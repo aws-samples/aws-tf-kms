@@ -1,0 +1,8 @@
+.DS_Store
+.terraform
+.terraform-*
+.terraform.*
+*.backup
+*.tfstate
+.hcl
+.temp
