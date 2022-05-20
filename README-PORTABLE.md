@@ -79,13 +79,13 @@ Other approach is to allow access using `kms:ViaService` and `kms:CallerAccount`
 
 AWS KMS also supports [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), which are the related AWS KMS keys in different AWS Regions. The related multi-region keys have the same key material and key ID, hence cross-region encryption/decryption can occur without re-encryption or cross-region API call. A multi-region key in each AWS Region has its own alias, tags, key resource policy, grants and status(enabled/disabled). These are suitable for many common data security scenarios such as disaster recovery, multi-region applications, global data management, etc.
 
-This solution is a set of [Terraform](https://www.terraform.io/) modules and examples. It provisions symmetric customer-managed [AWS KMS](https://aws.amazon.com/kms/) keys that are usable by the [target AWS Services](#supported-services) in the owner account. Optionally, it supports managing the key resource policy for the cross-account access via the AWS Services and the account principals. An additional module is included that supports creating [multi-region replica keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-replicate.html) in another region.
+This solution is a set of [Terraform](https://www.terraform.io/) modules and examples. It provisions symmetric customer-managed [AWS KMS](https://aws.amazon.com/kms/) keys that are usable by the [target AWS Services](#supported_services) in the owner account. Optionally, it supports managing the key resource policy for the cross-account access via the AWS Services and the account principals. An additional module is included that supports creating [multi-region replica keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-replicate.html) in another region.
 
 ## Features
 
 The solution has following features:
 
-- Create the AWS KMS keys along with key resource policy and [alias](https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html) suitable for the [target AWS Services](#supported-services).
+- Create the AWS KMS keys along with key resource policy and [alias](https://docs.aws.amazon.com/kms/latest/developerguide/alias-about.html) suitable for the [target AWS Services](#supported_services).
 - Create multi-region replica key with key resource policy and alias in another region.
 - Specify one or more IAM roles for the `Administration` of the keys in the owner account.
 - Specify zero or more IAM roles for the `Usage` of the keys from the owner account and/or trusted-account(s).
@@ -103,7 +103,7 @@ The solution has following features:
 - The AWS User/Role executing the Terraform scripts must have permissions to provision the target resources in the owner account.
 - The Terraform CLI (`version = ">= 1.1.9"`) is installed.
 - Terraform backend provider and state locking providers are identified and bootstrapped.
-  - An [example bootstrap](./bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
+  - An [example bootstrap](https://github.com/aws-samples/aws-tf-kms/tree/main/bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
     - The Amazon S3 bucket name has to be globally unique.
 - A unique project code name e.g., `appx` is identified that will be used to uniformly name the key aliases.
 - Uniform resource tagging scheme is identified.
@@ -129,7 +129,7 @@ Create one or more single-region AWS KMS keys in the owner account along with ke
 - Key Usage role(s) have the usage access to the key(s)
 - Target AWS Service usage role(s) have the usage access to the key via the target AWS Service.
 
-Refer [examples/kms/scenario1](./examples/kms/scenario1/) to execute this scenario.
+Refer [examples/kms/scenario1](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario1/) to execute this scenario.
 
 ### Scenario 2:  Create multi-region AWS KMS key(s) in the primary region and multi-region replica key in another region(s)
 Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region. Additionally create multi-region replica keys along with key resource policies and aliases in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
@@ -141,7 +141,7 @@ Create one or more multi-region AWS KMS keys along with key resource policies an
 - Key Usage role(s) have the usage access to the key(s) and replica key(s)
 - Target AWS Service usage role(s) have the usage access to the key or replica key via the target AWS Service in the respective region.
 
-Refer [examples/kms/scenario2](./examples/kms/scenario2/) to execute this scenario.
+Refer [examples/kms/scenario2](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario2/) to execute this scenario.
 
 ### Scenario 3: Create AWS KMS key(s) in the owner account and allow cross-account access via AWS Services and the account principals
 Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS Services in the trusted account(s) to use the AWS KMS keys in their account.
@@ -157,9 +157,9 @@ Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS S
 - Target AWS Service usage role(s) in the trusted account have the usage access to the key via the target AWS Service in the trusted account
 
 
-Refer [examples/kms/scenario3](./examples/kms/scenario3/) to execute this scenario.
+Refer [examples/kms/scenario3](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario3/) to execute this scenario.
 
-## Supported Services
+## <a id="supported_services"></a>Supported Services
 
 This set of modules supports creating the AMS KMS key along with key resource policy and alias that can be used by the following AWS Services.
 - [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
@@ -186,8 +186,8 @@ This set of modules supports creating the AMS KMS key along with key resource po
 
 ## Security 
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+See [CONTRIBUTING](https://github.com/aws-samples/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
 
 ## License
 
-This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
+This library is licensed under the MIT-0 License. See the [LICENSE](https://github.com/aws-samples/aws-tf-kms/blob/main/LICENSE) file.

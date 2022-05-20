@@ -17,8 +17,8 @@ tags = {
 // Scenario Variables
 //---------------------------------------------------------//
 kms_usage_principal_arns = [
-  "arn:aws:iam::386485944186:role/Admin"
+  "arn:aws:iam::<your-trusted-account-id>:role/Admin"
 ]
 kms_usage_accounts = [
-  "386485944186"
+  "<your-trusted-account-id>"
 ]
