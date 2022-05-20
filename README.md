@@ -146,7 +146,7 @@ Refer [examples/kms/scenario2](./examples/kms/scenario2/) to execute this scenar
 ### Scenario 3: Create AWS KMS key(s) in the owner account and allow cross-account access via AWS Services and the account principals
 Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS Services in the trusted account(s) to use the AWS KMS keys in their account.
 
-<p align="center"><img src="images/aws-tf-kms-Scenario-3.png" width="50%"/></p>
+<p align="center"><img src="images/aws-tf-kms-Scenario-3.png" width="75%"/></p>
 
 - Account owner has full access to the key(s)
 - Key Admin role in the owner account has administrative access to the key(s)
