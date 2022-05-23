@@ -166,6 +166,7 @@ This set of modules supports creating the AMS KMS key along with key resource po
 - [Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 - [Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html)
 - [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Encryption.html)
+- [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html)
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/security-dataprotection.html#security-privacy-atrest)
 - [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)
 - [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html)

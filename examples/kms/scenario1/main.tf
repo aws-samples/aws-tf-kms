@@ -16,6 +16,7 @@ module "kms_keys" {
   enable_kms_ebs            = true
   enable_kms_efs            = true
   enable_kms_rds            = true
+  enable_kms_dynamodb       = true
   enable_kms_lambda         = true
   enable_kms_logs           = true
   enable_kms_sns            = true

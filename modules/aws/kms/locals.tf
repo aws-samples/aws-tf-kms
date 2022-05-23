@@ -12,6 +12,7 @@ locals {
     ebs            = try(length(var.override_policy_ebs), 0) == 0 ? data.aws_iam_policy_document.ebs.json : var.override_policy_ebs
     efs            = try(length(var.override_policy_efs), 0) == 0 ? data.aws_iam_policy_document.efs.json : var.override_policy_efs
     rds            = try(length(var.override_policy_rds), 0) == 0 ? data.aws_iam_policy_document.rds.json : var.override_policy_rds
+    dynamodb       = try(length(var.override_policy_dynamodb), 0) == 0 ? data.aws_iam_policy_document.dynamodb.json : var.override_policy_dynamodb
     lambda         = try(length(var.override_policy_lambda), 0) == 0 ? data.aws_iam_policy_document.lambda.json : var.override_policy_lambda
     logs           = try(length(var.override_policy_logs), 0) == 0 ? data.aws_iam_policy_document.logs.json : var.override_policy_logs
     sns            = try(length(var.override_policy_sns), 0) == 0 ? data.aws_iam_policy_document.sns.json : var.override_policy_sns
@@ -29,6 +30,7 @@ locals {
     ebs            = var.enable_key_rotation_ebs
     efs            = var.enable_key_rotation_efs
     rds            = var.enable_key_rotation_rds
+    dynamodb       = var.enable_key_rotation_dynamodb
     lambda         = var.enable_key_rotation_lambda
     logs           = var.enable_key_rotation_logs
     sns            = var.enable_key_rotation_sns
@@ -46,6 +48,7 @@ locals {
     ebs            = var.enable_multi_region_ebs
     efs            = var.enable_multi_region_efs
     rds            = var.enable_multi_region_rds
+    dynamodb       = var.enable_multi_region_dynamodb
     lambda         = var.enable_multi_region_lambda
     logs           = var.enable_multi_region_logs
     sns            = var.enable_multi_region_sns
@@ -66,6 +69,7 @@ locals {
     var.enable_kms_ebs ? "ebs" : "",
     var.enable_kms_efs ? "efs" : "",
     var.enable_kms_rds ? "rds" : "",
+    var.enable_kms_dynamodb ? "dynamodb" : "",
     var.enable_kms_lambda ? "lambda" : "",
     var.enable_kms_logs ? "logs" : "",
     var.enable_kms_sns ? "sns" : "",

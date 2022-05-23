@@ -24,6 +24,7 @@ No modules.
 | <a name="input_enable_cross_account_access_via_service"></a> [enable\_cross\_account\_access\_via\_service](#input\_enable\_cross\_account\_access\_via\_service) | When 'kms\_usage\_accounts' are specified, enabling this flag allows cross-account access to the key via services e.g. S3, EBS, EFS | `bool` | `false` | no |
 | <a name="input_enable_key_rotation_acm"></a> [enable\_key\_rotation\_acm](#input\_enable\_key\_rotation\_acm) | Enable key rotation for AWS ACM CMK | `bool` | `true` | no |
 | <a name="input_enable_key_rotation_backup"></a> [enable\_key\_rotation\_backup](#input\_enable\_key\_rotation\_backup) | Enable key rotation for AWS Backup CMK | `bool` | `true` | no |
+| <a name="input_enable_key_rotation_dynamodb"></a> [enable\_key\_rotation\_dynamodb](#input\_enable\_key\_rotation\_dynamodb) | Enable key rotation for Amazon DynamoDB CMK | `bool` | `true` | no |
 | <a name="input_enable_key_rotation_ebs"></a> [enable\_key\_rotation\_ebs](#input\_enable\_key\_rotation\_ebs) | Enable key rotation for Amazon EBS CMK | `bool` | `true` | no |
 | <a name="input_enable_key_rotation_efs"></a> [enable\_key\_rotation\_efs](#input\_enable\_key\_rotation\_efs) | Enable key rotation for Amazon EFS CMK | `bool` | `true` | no |
 | <a name="input_enable_key_rotation_glue"></a> [enable\_key\_rotation\_glue](#input\_enable\_key\_rotation\_glue) | Enable key rotation for AWS Glue CMK | `bool` | `true` | no |
@@ -39,6 +40,7 @@ No modules.
 | <a name="input_enable_key_rotation_ssm"></a> [enable\_key\_rotation\_ssm](#input\_enable\_key\_rotation\_ssm) | Enable key rotation for AWS Systems Manager Parameter Store CMK | `bool` | `true` | no |
 | <a name="input_enable_kms_acm"></a> [enable\_kms\_acm](#input\_enable\_kms\_acm) | Enable customer managed key that can be used to encrypt/decrypt AWS ACM | `bool` | `false` | no |
 | <a name="input_enable_kms_backup"></a> [enable\_kms\_backup](#input\_enable\_kms\_backup) | Enable customer managed key that can be used to encrypt/decrypt AWS Backup | `bool` | `false` | no |
+| <a name="input_enable_kms_dynamodb"></a> [enable\_kms\_dynamodb](#input\_enable\_kms\_dynamodb) | Enable customer managed key that can be used to encrypt/decrypt Amazon DynamoDB | `bool` | `false` | no |
 | <a name="input_enable_kms_ebs"></a> [enable\_kms\_ebs](#input\_enable\_kms\_ebs) | Enable customer managed key that can be used to encrypt/decrypt Amazon EBS | `bool` | `false` | no |
 | <a name="input_enable_kms_efs"></a> [enable\_kms\_efs](#input\_enable\_kms\_efs) | Enable customer managed key that can be used to encrypt/decrypt Amazon EFS | `bool` | `false` | no |
 | <a name="input_enable_kms_glue"></a> [enable\_kms\_glue](#input\_enable\_kms\_glue) | Enable customer managed key that can be used to encrypt/decrypt AWS Glue | `bool` | `false` | no |
@@ -54,6 +56,7 @@ No modules.
 | <a name="input_enable_kms_ssm"></a> [enable\_kms\_ssm](#input\_enable\_kms\_ssm) | Enable customer managed key that can be used to encrypt/decrypt AWS Systems Manager Parameter Store | `bool` | `false` | no |
 | <a name="input_enable_multi_region_acm"></a> [enable\_multi\_region\_acm](#input\_enable\_multi\_region\_acm) | Enable multi-region for AWS ACM CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_backup"></a> [enable\_multi\_region\_backup](#input\_enable\_multi\_region\_backup) | Enable multi-region for AWS Backup CMK | `bool` | `false` | no |
+| <a name="input_enable_multi_region_dynamodb"></a> [enable\_multi\_region\_dynamodb](#input\_enable\_multi\_region\_dynamodb) | Enable multi-region for Amazon DynamoDB CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_ebs"></a> [enable\_multi\_region\_ebs](#input\_enable\_multi\_region\_ebs) | Enable multi-region for Amazon EBS CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_efs"></a> [enable\_multi\_region\_efs](#input\_enable\_multi\_region\_efs) | Enable multi-region for Amazon EFS CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_glue"></a> [enable\_multi\_region\_glue](#input\_enable\_multi\_region\_glue) | Enable multi-region for AWS Glues CMK | `bool` | `false` | no |
@@ -75,6 +78,7 @@ No modules.
 | <a name="input_kms_usage_roles"></a> [kms\_usage\_roles](#input\_kms\_usage\_roles) | Zero or more IAM roles in the primary account that need usage access to the KMS keys | `list(string)` | `[]` | no |
 | <a name="input_override_policy_acm"></a> [override\_policy\_acm](#input\_override\_policy\_acm) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_backup"></a> [override\_policy\_backup](#input\_override\_policy\_backup) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
+| <a name="input_override_policy_dynamodb"></a> [override\_policy\_dynamodb](#input\_override\_policy\_dynamodb) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_ebs"></a> [override\_policy\_ebs](#input\_override\_policy\_ebs) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_efs"></a> [override\_policy\_efs](#input\_override\_policy\_efs) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_glue"></a> [override\_policy\_glue](#input\_override\_policy\_glue) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
