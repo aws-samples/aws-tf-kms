@@ -1,5 +1,5 @@
 # Scenario 2:  Create multi-region AWS KMS key(s) in the primary region and multi-region replica key in another region(s)
-Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region. Additionally create multi-region replica keys along with key resource policies and aliases in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
+Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region, along with multi-region replica key(s) in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
 
 <p align="center"><img src="../../../images/aws-tf-kms-Scenario-2.png" width="50%"/></p>
 

@@ -1,11 +1,11 @@
 # AWS KMS keys for AWS Services at scale with multi-region replica and cross-account access
 
-[AWS Key Management Service (KMS)](https://aws.amazon.com/kms/) provides control over the cryptographic keys used to protect the data. AWS KMS is integrated with many [AWS Services](https://aws.amazon.com/kms/features/#AWS_Service_Integration) to encrypt the data stored in these services and control access to the keys that decrypt it. [Envelope encryption](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#enveloping) is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key (root key). AWS KMS protects the encryption keys by storing and managing them securely. Root keys never leave the AWS KMS unencrypted. Key resource policy along with IAM policies controls the access to the AWS KMS APIs.
+[AWS Key Management Service (KMS)](https://aws.amazon.com/kms/) provides control over cryptographic keys used to protect data. AWS KMS is integrated with many [AWS Services](https://aws.amazon.com/kms/features/#AWS_Service_Integration) to encrypt the data stored in these services and control access to the keys that decrypt it. [Envelope encryption](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#enveloping) is the practice of encrypting plaintext data with a data key, and then encrypting the data key with a second key, known as the root key. AWS KMS protects the encryption keys by storing and managing them securely. Root keys never leave the AWS KMS unencrypted. Key resource policy along with IAM policies controls the access to the AWS KMS APIs.
 
-AWS KMS keys can be [AWS-owned, AWS-managed or customer-managed](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt). Some AWS Services encrypt the data, by default, with an AWS-owned key or an AWS-managed key. Some AWS Services support customer-managed keys. For more control, a best practice is to use a separate customer-managed AWS KMS key for each AWS Service that supports it. This helps in defining scoped down permissions to the KMS keys and hence the data to the authorized users of the AWS Services.
+AWS KMS keys can be [AWS-owned, AWS-managed or customer-managed](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt). Some AWS Services encrypt the data, by default, with an AWS-owned key or an AWS-managed key. Some AWS Services support customer managed keys (CMK). For more control, a best practice is to use a separate customer-managed AWS KMS key for each AWS Service that supports it. This helps in defining scoped down permissions to the KMS keys and hence the data to the authorized users of the AWS Services.
 
-Large organizations usually have multi-account strategy. A `Security` account owns the AWS security resources. An administrator in the `Security` account manages the lifecycle of the AWS security resources. An approach to scale the control of the AWS KMS keys across the accounts is to create the keys in a `Security` account and [allowing cross-account access](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) to the trusted accounts in the key resource policy.  
-```
+Large organizations usually have multi-account strategy. A `Security` account owns the AWS security resources. An administrator in the `Security` account manages the lifecycle of the AWS security resources. An approach to scale the control of the AWS KMS keys across the accounts is to create the keys in a `Security` account and [allowing cross-account access](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) to the trusted accounts in the key resource policy, as shown in the sample resource policy below:
+```json
 {
     "Sid": "Allow use of the key to the cross-account owner",
     "Effect": "Allow",
@@ -26,8 +26,8 @@ Large organizations usually have multi-account strategy. A `Security` account ow
     "Resource": "*"
 }
 ```
-The trusted account has the ability to further delegate these permissions to IAM principals within their own account using the IAM policies.
-```
+A trusted account may further delegate these permissions to IAM principals within their own account using the IAM policies.
+```json
 {
     "Sid": "Allow use of this KMS key from Security Account",
     "Effect": "Allow",
@@ -47,8 +47,8 @@ The trusted account has the ability to further delegate these permissions to IAM
     "Resource": "arn:aws:kms:<aws-region>:<security-account-id>:key/<key-id>"
 }
 ```
-Other approach is to allow access using `kms:ViaService` and `kms:CallerAccount` conditions for the authorized principals of the trusted account(s) in the key resource policy.
-```
+Another approach is to allow access using `kms:ViaService` and `kms:CallerAccount` conditions for the authorized principals of the trusted account(s) in the key resource policy.
+```json
 {
     "Sid": "Allow access through <aws-service> for all principals in the account(w) that are authorized to use <aws-service>",
     "Effect": "Allow",
@@ -74,10 +74,8 @@ Other approach is to allow access using `kms:ViaService` and `kms:CallerAccount`
         }
     }
 }
-
 ```
-
-AWS KMS also supports [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), which are the related AWS KMS keys in different AWS Regions. The related multi-region keys have the same key material and key ID, hence cross-region encryption/decryption can occur without re-encryption or cross-region API call. A multi-region key in each AWS Region has its own alias, tags, key resource policy, grants and status(enabled/disabled). These are suitable for many common data security scenarios such as disaster recovery, multi-region applications, global data management, etc.
+AWS KMS also supports [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), which are copies of the AWS KMS keys in different AWS Regions. The related multi-region keys have the same key material and key ID, hence cross-region encryption/decryption can occur without re-encryption or cross-region API calls. A multi-region key in each AWS Region has its own alias, tags, key resource policy, grants and status(enabled/disabled). These are suitable for many common data security scenarios such as disaster recovery, multi-region applications, global data management, etc.
 
 This solution is a set of [Terraform](https://www.terraform.io/) modules and examples. It provisions symmetric customer-managed [AWS KMS](https://aws.amazon.com/kms/) keys that are usable by the [target AWS Services](#supported_services) in the owner account. Optionally, it supports managing the key resource policy for the cross-account access via the AWS Services and the account principals. An additional module is included that supports creating [multi-region replica keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-replicate.html) in another region.
 
@@ -103,8 +101,8 @@ The solution has following features:
 - The AWS User/Role executing the Terraform scripts must have permissions to provision the target resources in the owner account.
 - The Terraform CLI (`version = ">= 1.1.9"`) is installed.
 - Terraform backend provider and state locking providers are identified and bootstrapped.
-  - An [example bootstrap](https://github.com/aws-samples/aws-tf-kms/tree/main/bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
-    - The Amazon S3 bucket name has to be globally unique.
+  - An [example bootstrap](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
+    - The Amazon S3 bucket name must be globally unique.
 - A unique project code name e.g., `appx` is identified that will be used to uniformly name the key aliases.
 - Uniform resource tagging scheme is identified.
   - The examples use only two tags: `Env` and `Project`
@@ -129,10 +127,10 @@ Create one or more single-region AWS KMS keys in the owner account along with ke
 - Key Usage role(s) have the usage access to the key(s)
 - Target AWS Service usage role(s) have the usage access to the key via the target AWS Service.
 
-Refer [examples/kms/scenario1](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario1/) to execute this scenario.
+Refer [examples/kms/scenario1](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario1/) to execute this scenario.
 
 ### Scenario 2:  Create multi-region AWS KMS key(s) in the primary region and multi-region replica key in another region(s)
-Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region. Additionally create multi-region replica keys along with key resource policies and aliases in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
+Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region, along with multi-region replica key(s) in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
 
 <p align="center"><img src="images/aws-tf-kms-Scenario-2.png" width="50%"/></p>
 
@@ -141,7 +139,7 @@ Create one or more multi-region AWS KMS keys along with key resource policies an
 - Key Usage role(s) have the usage access to the key(s) and replica key(s)
 - Target AWS Service usage role(s) have the usage access to the key or replica key via the target AWS Service in the respective region.
 
-Refer [examples/kms/scenario2](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario2/) to execute this scenario.
+Refer [examples/kms/scenario2](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario2/) to execute this scenario.
 
 ### Scenario 3: Create AWS KMS key(s) in the owner account and allow cross-account access via AWS Services and the account principals
 Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS Services in the trusted account(s) to use the AWS KMS keys in their account.
@@ -157,7 +155,7 @@ Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS S
 - Target AWS Service usage role(s) in the trusted account have the usage access to the key via the target AWS Service in the trusted account
 
 
-Refer [examples/kms/scenario3](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario3/) to execute this scenario.
+Refer [examples/kms/scenario3](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario3/) to execute this scenario.
 
 ## <a id="supported_services"></a>Supported Services
 
@@ -166,6 +164,7 @@ This set of modules supports creating the AMS KMS key along with key resource po
 - [Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 - [Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html)
 - [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Encryption.html)
+- [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html)
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/security-dataprotection.html#security-privacy-atrest)
 - [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html)
 - [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html)
@@ -180,14 +179,14 @@ This set of modules supports creating the AMS KMS key along with key resource po
 
 ## Future Enhancements
 
-- The current solution only supports Symmetric KMS keys. It can be enhanced to support Asymmetric KMS keys.
+- The solution supports Symmetric KMS keys. It can be enhanced to support Asymmetric KMS keys.
 - The solution can be enhanced to support more AWS Services.
 - The solution support common use cases and sufficient key resource policies. It can be enhanced to further scope-down the policies.
 
 ## Security 
 
-See [CONTRIBUTING](https://github.com/aws-samples/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
+See [CONTRIBUTING](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
 
 ## License
 
-This library is licensed under the MIT-0 License. See the [LICENSE](https://github.com/aws-samples/aws-tf-kms/blob/main/LICENSE) file.
+This library is licensed under the MIT-0 License. See the [LICENSE](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/blob/main/LICENSE) file.
