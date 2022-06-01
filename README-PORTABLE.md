@@ -11,7 +11,7 @@ Large organizations usually have multi-account strategy. A `Security` account ow
     "Effect": "Allow",
     "Principal": {
         "AWS": [
-            "arn:aws:iam::<truested-account-id-1>:root"
+            "arn:aws:iam::<truested-account-id-1>:root",
             "arn:aws:iam::<trusted-account-id-2>:root"
             "..."
         ]
@@ -101,7 +101,7 @@ The solution has following features:
 - The AWS User/Role executing the Terraform scripts must have permissions to provision the target resources in the owner account.
 - The Terraform CLI (`version = ">= 1.1.9"`) is installed.
 - Terraform backend provider and state locking providers are identified and bootstrapped.
-  - An [example bootstrap](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
+  - An [example bootstrap](https://github.com/aws-samples/aws-tf-kms/tree/main/bootstrap) module/example is provided that provisions an Amazon S3 bucket for Terraform state storage and Amazon DynamoDB table for Terraform state locking.
     - The Amazon S3 bucket name must be globally unique.
 - A unique project code name e.g., `appx` is identified that will be used to uniformly name the key aliases.
 - Uniform resource tagging scheme is identified.
@@ -127,7 +127,7 @@ Create one or more single-region AWS KMS keys in the owner account along with ke
 - Key Usage role(s) have the usage access to the key(s)
 - Target AWS Service usage role(s) have the usage access to the key via the target AWS Service.
 
-Refer [examples/kms/scenario1](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario1/) to execute this scenario.
+Refer [examples/kms/scenario1](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario1/) to execute this scenario.
 
 ### Scenario 2:  Create multi-region AWS KMS key(s) in the primary region and multi-region replica key in another region(s)
 Create one or more multi-region AWS KMS keys along with key resource policies and aliases in the primary region, along with multi-region replica key(s) in another region(s). The target AWS Service in the secondary region(s) will be able to use the Key replica via the known alias.
@@ -139,7 +139,7 @@ Create one or more multi-region AWS KMS keys along with key resource policies an
 - Key Usage role(s) have the usage access to the key(s) and replica key(s)
 - Target AWS Service usage role(s) have the usage access to the key or replica key via the target AWS Service in the respective region.
 
-Refer [examples/kms/scenario2](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario2/) to execute this scenario.
+Refer [examples/kms/scenario2](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario2/) to execute this scenario.
 
 ### Scenario 3: Create AWS KMS key(s) in the owner account and allow cross-account access via AWS Services and the account principals
 Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS Services in the trusted account(s) to use the AWS KMS keys in their account.
@@ -155,7 +155,7 @@ Create one or more AWS KMS keys in the one account. Allow principal(s) and AWS S
 - Target AWS Service usage role(s) in the trusted account have the usage access to the key via the target AWS Service in the trusted account
 
 
-Refer [examples/kms/scenario3](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/tree/main/examples/kms/scenario3/) to execute this scenario.
+Refer [examples/kms/scenario3](https://github.com/aws-samples/aws-tf-kms/tree/main/examples/kms/scenario3/) to execute this scenario.
 
 ## <a id="supported_services"></a>Supported Services
 
@@ -185,8 +185,8 @@ This set of modules supports creating the AMS KMS key along with key resource po
 
 ## Security 
 
-See [CONTRIBUTING](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
+See [CONTRIBUTING](https://github.com/aws-samples/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
 
 ## License
 
-This library is licensed under the MIT-0 License. See the [LICENSE](https://gitlab.aws.dev/vivgoyal/aws-tf-kms/blob/main/LICENSE) file.
+This library is licensed under the MIT-0 License. See the [LICENSE](https://github.com/aws-samples/aws-tf-kms/blob/main/LICENSE) file.
