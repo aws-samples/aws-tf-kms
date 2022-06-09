@@ -7,7 +7,7 @@ variable "primary_region" {
 }
 
 variable "replica_region" {
-  description = "The AWS Region e.g. us-east-1 where replica will be created"
+  description = "The AWS Region e.g. us-west-1 where replica will be created"
   type        = string
 }
 
