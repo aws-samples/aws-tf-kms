@@ -25,7 +25,7 @@ No modules.
 | <a name="input_env_name"></a> [env\_name](#input\_env\_name) | Environment name e.g. dev, prod | `string` | `"dev"` | no |
 | <a name="input_primary_region"></a> [primary\_region](#input\_primary\_region) | The AWS Region e.g. us-east-1 for the primary KMS Key | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | Project name (prefix/suffix) to be used for all the resource identifications | `string` | n/a | yes |
-| <a name="input_replica_region"></a> [replica\_region](#input\_replica\_region) | The AWS Region e.g. us-east-1 where replica will be created | `string` | n/a | yes |
+| <a name="input_replica_region"></a> [replica\_region](#input\_replica\_region) | The AWS Region e.g. us-west-1 where replica will be created | `string` | n/a | yes |
 | <a name="input_replicas_to_create"></a> [replicas\_to\_create](#input\_replicas\_to\_create) | Map of KMS aliases from Primary region for which replicas to be created in Replica region | <pre>map(object({<br>    alias  = string # Alias for the KMS Key in the primary region<br>    policy = string # Policy for the KMS Key in the primary region, or policy for the replica<br>  }))</pre> | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Common and mandatory tags for the resources | `map(string)` | `{}` | no |
 

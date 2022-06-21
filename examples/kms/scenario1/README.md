@@ -14,7 +14,7 @@ Create one or more single-region AWS KMS keys in the owner account along with ke
 - A unique alias prefix is identified that will be used to uniformly name the key aliases.
 - Terraform backend provider and state locking providers are identified and bootstrapped.
   - An [example bootstrap](../../../bootstrap) module/example is provided that provisions Amazon S3 for Terraform state storage and Amazon DynamoDB for Terraform state locking.
-- Modify `terraform.tfvars` to match your requirements. 
+- Modify `terraform.tfvars` to match your requirements.
 
 ## Execution
 

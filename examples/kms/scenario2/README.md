@@ -16,7 +16,7 @@ Create one or more multi-region AWS KMS keys along with key resource policies an
 - One or more regions are identified for multi-region replica key.
 - Terraform backend provider and state locking providers are identified and bootstrapped.
   - An [example bootstrap](../../../bootstrap) module/example is provided that provisions Amazon S3 for Terraform state storage and Amazon DynamoDB for Terraform state locking.
-- Modify `terraform.tfvars` to match your requirements. 
+- Modify `terraform.tfvars` to match your requirements.
 
 ## Execution
 

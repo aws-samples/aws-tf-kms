@@ -54,6 +54,8 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_env_name"></a> [env\_name](#input\_env\_name) | Environment name e.g. dev, prod | `string` | n/a | yes |
+| <a name="input_kms_usage_accounts"></a> [kms\_usage\_accounts](#input\_kms\_usage\_accounts) | List of trusted account Ids | `list(string)` | n/a | yes |
+| <a name="input_kms_usage_principal_arns"></a> [kms\_usage\_principal\_arns](#input\_kms\_usage\_principal\_arns) | List of cross-account principal ARNs | `list(string)` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | Project name (prefix/suffix) to be used on all the resources identification | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS Region e.g. us-east-1 for the environment | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Common and mandatory tags for the resources | `map(string)` | n/a | yes |

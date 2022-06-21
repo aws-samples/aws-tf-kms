@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "s3" {
     condition {
       test     = "StringEquals"
       variable = "kms:CallerAccount"
-      values = local.allowed_accounts_via_service
+      values   = local.allowed_accounts_via_service
     }
   }
 }

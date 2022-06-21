@@ -12,7 +12,7 @@ module "kms_keys" {
   kms_admin_roles  = ["Admin"]
   kms_usage_roles  = []
 
-  enable_kms_ebs = true
+  enable_kms_ebs          = true
   enable_multi_region_ebs = true
 }
 

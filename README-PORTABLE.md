@@ -1,6 +1,6 @@
 # Scale usage of AWS KMS keys for AWS Services with multi-region replica and cross-account access
 
-This solution is a set of [Terraform](https://www.terraform.io/) modules that provision symmetric customer managed [AWS KMS](https://aws.amazon.com/kms/) keys for use by the [target AWS Services](#supported_services). You can optionally manage the key resource policy for the cross-account access via the AWS Services and the account principals. An additional module is included that supports creating [multi-region replica keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-replicate.html) in another region. The full set of features is listed [here](#features). The solution also provides three example scenarios of how the solution solves common enterprise use cases. 
+This solution is a set of [Terraform](https://www.terraform.io/) modules that provision symmetric customer managed [AWS KMS](https://aws.amazon.com/kms/) keys for use by the [target AWS Services](#supported_services). You can optionally manage the key resource policy for the cross-account access via the AWS Services and the account principals. An additional module is included that supports creating [multi-region replica keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-replicate.html) in another region. The full set of features is listed [here](#features). The solution also provides three example scenarios of how the solution solves common enterprise use cases.
 
 ## Introduction
 
@@ -185,7 +185,7 @@ This set of modules supports creating the AMS KMS key along with key resource po
 - The solution can be enhanced to support more AWS Services.
 - The solution support common use cases and sufficient key resource policies. It can be enhanced to further scope-down the policies.
 
-## Security 
+## Security
 
 See [CONTRIBUTING](https://github.com/aws-samples/aws-tf-kms/blob/main/CONTRIBUTING.md#security-issue-notifications) for more information.
 

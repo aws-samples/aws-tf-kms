@@ -6,7 +6,7 @@ region = "us-east-1"
 //---------------------------------------------------------//
 // Common Variables
 //---------------------------------------------------------//
-project = "aws-tf-kms"
+project  = "aws-tf-kms"
 env_name = "dev"
 tags = {
   Env     = "DEV"

@@ -20,6 +20,7 @@ variable "override_policy_dynamodb" {
 }
 
 data "aws_iam_policy_document" "dynamodb" {
+  # checkov:skip=CKV_AWS_109: Not applicable, using condition
   # checkov:skip=CKV_AWS_111: Not applicable, using condition
   source_policy_documents = [data.aws_iam_policy_document.admin_kms_policy.json]
 

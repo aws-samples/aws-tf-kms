@@ -12,4 +12,3 @@ tags = {
   Env     = "DEV"
   Project = "scenario2-kms"
 }
-
