@@ -1,6 +1,23 @@
-//---------------------------------------------------------//
-// KMS Variables
-//---------------------------------------------------------//
+/*---------------------------------------------------------
+Provider Variable
+---------------------------------------------------------*/
+variable "region" {
+  description = "The AWS Region e.g. us-east-1 for the environment"
+  type        = string
+}
+
+/*---------------------------------------------------------
+Common Variables
+---------------------------------------------------------*/
+variable "tags" {
+  description = "Common and mandatory tags for the resources"
+  type        = map(string)
+  default     = {}
+}
+
+/*---------------------------------------------------------
+KMS Variables
+---------------------------------------------------------*/
 variable "kms_alias_prefix" {
   description = "Prefix used in creating KMS alias using the pattern `alias/{prefix}/{key_name}'"
   type        = string

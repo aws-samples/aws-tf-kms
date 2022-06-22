@@ -1,18 +1,25 @@
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_kms_sns" {
   description = "Enable customer managed key that can be used to encrypt/decrypt Amazon SNS"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_key_rotation_sns" {
   description = "Enable key rotation for Amazon SNS CMK"
   type        = bool
   default     = true
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_multi_region_sns" {
   description = "Enable multi-region for Amazon SNS CMK"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "override_policy_sns" {
   description = "A valid KMS key policy JSON document. If not specified, a canonical key policy will be used."
   type        = string

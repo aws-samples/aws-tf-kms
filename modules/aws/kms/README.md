@@ -1,4 +1,11 @@
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= v1.1.9 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.13.0 |
+
 ## Providers
 
 | Name | Version |
@@ -20,6 +27,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_kms_admin_roles"></a> [kms\_admin\_roles](#input\_kms\_admin\_roles) | Provide at least one IAM role that has Admin access to the KMS keys | `list(string)` | n/a | yes |
+| <a name="input_kms_alias_prefix"></a> [kms\_alias\_prefix](#input\_kms\_alias\_prefix) | Prefix used in creating KMS alias using the pattern `alias/{prefix}/{key_name}'` | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | The AWS Region e.g. us-east-1 for the environment | `string` | n/a | yes |
 | <a name="input_deletion_window_in_days"></a> [deletion\_window\_in\_days](#input\_deletion\_window\_in\_days) | The waiting period, after which the AWS KMS deletes the KMS key. It must be between 7 and 30. Default is 7. | `number` | `7` | no |
 | <a name="input_enable_cross_account_access_via_service"></a> [enable\_cross\_account\_access\_via\_service](#input\_enable\_cross\_account\_access\_via\_service) | When 'kms\_usage\_accounts' are specified, enabling this flag allows cross-account access to the key via services e.g. S3, EBS, EFS | `bool` | `false` | no |
 | <a name="input_enable_key_rotation_acm"></a> [enable\_key\_rotation\_acm](#input\_enable\_key\_rotation\_acm) | Enable key rotation for AWS ACM CMK | `bool` | `true` | no |
@@ -70,9 +80,6 @@ No modules.
 | <a name="input_enable_multi_region_sns"></a> [enable\_multi\_region\_sns](#input\_enable\_multi\_region\_sns) | Enable multi-region for Amazon SNS CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_sqs"></a> [enable\_multi\_region\_sqs](#input\_enable\_multi\_region\_sqs) | Enable multi-region for Amazon SQS CMK | `bool` | `false` | no |
 | <a name="input_enable_multi_region_ssm"></a> [enable\_multi\_region\_ssm](#input\_enable\_multi\_region\_ssm) | Enable multi-region for AWS Systems Manager Parameter Store CMK | `bool` | `false` | no |
-| <a name="input_env_name"></a> [env\_name](#input\_env\_name) | Environment name e.g. dev, prod | `string` | `"dev"` | no |
-| <a name="input_kms_admin_roles"></a> [kms\_admin\_roles](#input\_kms\_admin\_roles) | Provide at least one IAM role that has Admin access to the KMS keys | `list(string)` | n/a | yes |
-| <a name="input_kms_alias_prefix"></a> [kms\_alias\_prefix](#input\_kms\_alias\_prefix) | Prefix used in creating KMS alias using the pattern `alias/{prefix}/{key_name}'` | `string` | n/a | yes |
 | <a name="input_kms_usage_accounts"></a> [kms\_usage\_accounts](#input\_kms\_usage\_accounts) | Zero or more AWS Account IDs that need usage access to the KMS keys. The cross-acccount admin must provide IAM policies to enable access. | `list(string)` | `[]` | no |
 | <a name="input_kms_usage_principal_arns"></a> [kms\_usage\_principal\_arns](#input\_kms\_usage\_principal\_arns) | Zero or more IAM roles ARNs that need usage access to the KMS keys, use this to allow access to cross-account principals | `list(string)` | `[]` | no |
 | <a name="input_kms_usage_roles"></a> [kms\_usage\_roles](#input\_kms\_usage\_roles) | Zero or more IAM roles in the primary account that need usage access to the KMS keys | `list(string)` | `[]` | no |
@@ -92,8 +99,6 @@ No modules.
 | <a name="input_override_policy_sns"></a> [override\_policy\_sns](#input\_override\_policy\_sns) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_sqs"></a> [override\_policy\_sqs](#input\_override\_policy\_sqs) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
 | <a name="input_override_policy_ssm"></a> [override\_policy\_ssm](#input\_override\_policy\_ssm) | A valid KMS key policy JSON document. If not specified, a canonical key policy will be used. | `string` | `null` | no |
-| <a name="input_project"></a> [project](#input\_project) | Project name (prefix/suffix) to be used for all the resource identifications | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | The AWS Region e.g. us-east-1 for the environment | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Common and mandatory tags for the resources | `map(string)` | `{}` | no |
 
 ## Outputs

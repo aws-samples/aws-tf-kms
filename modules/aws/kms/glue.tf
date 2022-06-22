@@ -1,18 +1,25 @@
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_kms_glue" {
   description = "Enable customer managed key that can be used to encrypt/decrypt AWS Glue"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_key_rotation_glue" {
   description = "Enable key rotation for AWS Glue CMK"
   type        = bool
   default     = true
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_multi_region_glue" {
   description = "Enable multi-region for AWS Glues CMK"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "override_policy_glue" {
   description = "A valid KMS key policy JSON document. If not specified, a canonical key policy will be used."
   type        = string

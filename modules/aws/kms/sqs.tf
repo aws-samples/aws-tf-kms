@@ -1,18 +1,25 @@
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_kms_sqs" {
   description = "Enable customer managed key that can be used to encrypt/decrypt Amazon SQS"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_key_rotation_sqs" {
   description = "Enable key rotation for Amazon SQS CMK"
   type        = bool
   default     = true
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_multi_region_sqs" {
   description = "Enable multi-region for Amazon SQS CMK"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "override_policy_sqs" {
   description = "A valid KMS key policy JSON document. If not specified, a canonical key policy will be used."
   type        = string

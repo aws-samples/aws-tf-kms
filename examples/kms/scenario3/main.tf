@@ -3,9 +3,6 @@ module "kms_keys" {
 
   region = var.region
 
-  project  = var.project
-  env_name = var.env_name
-
   tags = var.tags
 
   kms_alias_prefix = var.project
@@ -33,9 +30,4 @@ module "kms_keys" {
   # enable_kms_glue    = true
   # enable_kms_acm     = true
 
-}
-
-output "kms_keys" {
-  description = "KMS Keys created"
-  value       = module.kms_keys.key_aliases
 }

@@ -1,18 +1,25 @@
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_kms_lambda" {
   description = "Enable customer managed key that can be used to encrypt/decrypt AWS Lambda"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_key_rotation_lambda" {
   description = "Enable key rotation for AWS Lambda CMK"
   type        = bool
   default     = true
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_multi_region_lambda" {
   description = "Enable multi-region for AWS Lambda CMK"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "override_policy_lambda" {
   description = "A valid KMS key policy JSON document. If not specified, a canonical key policy will be used."
   type        = string

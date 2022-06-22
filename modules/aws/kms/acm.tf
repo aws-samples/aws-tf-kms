@@ -1,18 +1,25 @@
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_kms_acm" {
   description = "Enable customer managed key that can be used to encrypt/decrypt AWS ACM"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_key_rotation_acm" {
   description = "Enable key rotation for AWS ACM CMK"
   type        = bool
   default     = true
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "enable_multi_region_acm" {
   description = "Enable multi-region for AWS ACM CMK"
   type        = bool
   default     = false
 }
+
+# tflint-ignore: terraform_standard_module_structure
 variable "override_policy_acm" {
   description = "A valid KMS key policy JSON document. If not specified, a canonical key policy will be used."
   type        = string
