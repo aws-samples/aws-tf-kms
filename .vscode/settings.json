@@ -1,0 +1,17 @@
+{
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "terraform-vars",
+        "terraform"
+    ],
+    "spellright.parserByClass": {
+        "terraform": {
+            "parser": "plain"
+        }
+    }
+}

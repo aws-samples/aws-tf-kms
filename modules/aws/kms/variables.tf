@@ -41,7 +41,7 @@ variable "kms_usage_principal_arns" {
 }
 
 variable "kms_usage_accounts" {
-  description = "Zero or more AWS Account IDs that need usage access to the KMS keys. The cross-acccount admin must provide IAM policies to enable access."
+  description = "Zero or more AWS Account IDs that need usage access to the KMS keys. The cross-account admin must provide IAM policies to enable access."
   type        = list(string)
   default     = []
 }

@@ -2,12 +2,12 @@
 
 [Terraform Backends](https://www.terraform.io/language/settings/backends) defines where Terraform's state snapshots are stored. [Amazon S3 Backend](https://www.terraform.io/language/settings/backends/s3) stores the Terraform state as a given key in a given bucket on Amazon S3. This backend also supports state locking and consistency checking via Dynamo DB.
 
-This is an example Terrafrom bootstrap script.
+This is an example Terraform bootstrap script.
 
 ## Prerequisites
 
 - Modify `terraform.tfvars`. Make sure to provide desired values for:
-  - `region` --> Target AWS Regsion
+  - `region` --> Target AWS Region
   - `s3_statebucket_name` --> Globally unique Amazon S3 bucket name
   - `dynamo_locktable_name` --> DynamoDB table name used for state locking
 - Modify `provider.tf`. Comment out the `backend` section.
@@ -26,7 +26,7 @@ This is an example Terrafrom bootstrap script.
 - Execute `terraform apply` and approve the changes.
 - Switch to using Amazon S3 backend by un-commenting the `backend "S3"` section within `provider.tf`
   - Modify `backend "S3"` section with correct values for `region`, `bucket`, `dynamodb_table`, and `key`. Use provided values as guidance.
-- Execute `terraform init` to re-initilize Terraform with new backend.
+- Execute `terraform init` to re-initialize Terraform with new backend.
   - This will ask you to move your state to Amazon S3. Enter 'yes'.
 - Once you have your Terraform state on Amazon S3, you can continue to make updates to bootstrap as needed, using the Amazon S3 as backend.
 
