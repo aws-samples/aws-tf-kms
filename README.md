@@ -178,6 +178,9 @@ This set of modules supports creating the AMS KMS key along with key resource po
 - [Amazon Kinesis](https://docs.aws.amazon.com/streams/latest/dev/server-side-encryption.html)
 - [AWS Glue](https://docs.aws.amazon.com/glue/latest/dg/encryption-at-rest.html)
 - [AWS ACM](https://docs.aws.amazon.com/acm/latest/userguide/data-protection.html)
+- [Amazon MWAA](https://docs.aws.amazon.com/mwaa/latest/userguide/encryption-at-rest.html)
+- [Amazon ECR](https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html)
+- [Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html)
 
 ## Future Enhancements
 

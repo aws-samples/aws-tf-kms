@@ -24,6 +24,9 @@ locals {
     kinesis        = try(length(var.override_policy_kinesis), 0) == 0 ? data.aws_iam_policy_document.kinesis.json : var.override_policy_kinesis
     glue           = try(length(var.override_policy_glue), 0) == 0 ? data.aws_iam_policy_document.glue.json : var.override_policy_glue
     acm            = try(length(var.override_policy_acm), 0) == 0 ? data.aws_iam_policy_document.acm.json : var.override_policy_acm
+    mwaa           = try(length(var.override_policy_mwaa), 0) == 0 ? data.aws_iam_policy_document.mwaa.json : var.override_policy_mwaa
+    ecr            = try(length(var.override_policy_ecr), 0) == 0 ? data.aws_iam_policy_document.ecr.json : var.override_policy_ecr
+    eks            = try(length(var.override_policy_eks), 0) == 0 ? data.aws_iam_policy_document.eks.json : var.override_policy_eks
   }
   enable_key_rotation = {
     s3             = var.enable_key_rotation_s3
@@ -42,6 +45,9 @@ locals {
     kinesis        = var.enable_key_rotation_kinesis
     glue           = var.enable_key_rotation_glue
     acm            = var.enable_key_rotation_acm
+    mwaa           = var.enable_key_rotation_mwaa
+    ecr            = var.enable_key_rotation_ecr
+    eks            = var.enable_key_rotation_eks
   }
   multi_region = {
     s3             = var.enable_multi_region_s3
@@ -60,6 +66,9 @@ locals {
     kinesis        = var.enable_multi_region_kinesis
     glue           = var.enable_multi_region_glue
     acm            = var.enable_multi_region_acm
+    mwaa           = var.enable_multi_region_mwaa
+    ecr            = var.enable_multi_region_ecr
+    eks            = var.enable_multi_region_eks
   }
 }
 
@@ -80,6 +89,9 @@ locals {
     var.enable_kms_session ? "session" : "",
     var.enable_kms_kinesis ? "kinesis" : "",
     var.enable_kms_glue ? "glue" : "",
-    var.enable_kms_acm ? "acm" : ""
+    var.enable_kms_acm ? "acm" : "",
+    var.enable_kms_mwaa ? "mwaa" : "",
+    var.enable_kms_ecr ? "ecr" : "",
+    var.enable_kms_eks ? "eks" : ""
   ])
 }

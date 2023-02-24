@@ -26,8 +26,10 @@ module "kms_keys" {
   # enable_kms_ssm            = true
   enable_kms_secretsmanager = true
   enable_kms_session        = true
-  # enable_kms_kinesis = true
-  # enable_kms_glue    = true
-  # enable_kms_acm     = true
-
+  # enable_kms_kinesis        = true
+  # enable_kms_glue           = true
+  # enable_kms_acm            = true
+  # enable_kms_mwaa           = true
+  # enable_kms_ecr            = true
+  # enable_kms_eks            = true
 }
